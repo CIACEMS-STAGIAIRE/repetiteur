@@ -238,7 +238,6 @@ onUnmounted(() => {
     </header>
 
     <section id="accueil" class="hero" :style="{ backgroundImage: `url(${heroImage})` }">
-      <img class="hero-mobile-image" :src="heroImage" alt="" aria-hidden="true" />
       <div class="hero-overlay">
         <div class="hero-content">
           <p class="eyebrow">Placement de repetiteurs a domicile</p>
@@ -627,10 +626,6 @@ onUnmounted(() => {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-}
-
-.hero-mobile-image {
-  display: none;
 }
 
 .hero-overlay {
@@ -1177,24 +1172,24 @@ onUnmounted(() => {
 
   .hero {
     margin-top: 82px;
-    min-height: auto;
+    min-height: calc(100svh - 82px);
     background-color: var(--color-primary-dark);
-    background-image: none !important;
-  }
-
-  .hero-mobile-image {
-    display: block;
-    width: 100%;
-    height: auto;
+    background-position: center top;
+    background-size: cover;
   }
 
   .hero-overlay {
-    align-items: end;
-    min-height: auto;
-    padding: 72px 0 42px;
+    align-items: center;
+    min-height: calc(100svh - 82px);
+    padding: 64px 0 42px;
     background:
-      linear-gradient(180deg, rgba(0, 42, 144, 0.98), rgba(0, 22, 83, 0.98)),
-      var(--color-primary-dark);
+      linear-gradient(
+        90deg,
+        rgba(0, 22, 83, 0.92) 0%,
+        rgba(0, 42, 144, 0.68) 62%,
+        rgba(0, 42, 144, 0.28) 100%
+      ),
+      linear-gradient(0deg, rgba(0, 22, 83, 0.54), rgba(0, 22, 83, 0.08));
   }
 
   .hero-actions,
