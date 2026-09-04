@@ -1124,7 +1124,6 @@ onUnmounted(() => {
   }
 
   .stats-grid,
-  .services-grid,
   .method-section,
   .profile-section,
   .testimonials-grid,
@@ -1133,13 +1132,33 @@ onUnmounted(() => {
     grid-template-columns: 1fr;
   }
 
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .stat-card {
-    border-right: 0;
     border-bottom: 1px solid var(--color-line);
   }
 
-  .stat-card:last-child {
+  .stat-card:nth-child(odd) {
+    border-right: 1px solid var(--color-line);
+  }
+
+  .stat-card:nth-child(even) {
+    border-right: 0;
+  }
+
+  .stat-card:nth-last-child(-n + 2) {
     border-bottom: 0;
+  }
+
+  .stat-card:last-child {
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 
   .contact-section {
@@ -1175,7 +1194,7 @@ onUnmounted(() => {
     min-height: calc(100svh - 82px);
     background-color: var(--color-primary-dark);
     background-position: center top;
-    background-size: cover;
+    background-size: contain;
   }
 
   .hero-overlay {
@@ -1184,12 +1203,17 @@ onUnmounted(() => {
     padding: 64px 0 42px;
     background:
       linear-gradient(
-        90deg,
-        rgba(0, 22, 83, 0.92) 0%,
-        rgba(0, 42, 144, 0.68) 62%,
-        rgba(0, 42, 144, 0.28) 100%
+        180deg,
+        rgba(0, 22, 83, 0.42) 0%,
+        rgba(0, 42, 144, 0.74) 34%,
+        rgba(0, 22, 83, 0.98) 78%
       ),
-      linear-gradient(0deg, rgba(0, 22, 83, 0.54), rgba(0, 22, 83, 0.08));
+      linear-gradient(90deg, rgba(0, 22, 83, 0.88), rgba(0, 42, 144, 0.2));
+  }
+
+  .stat-card {
+    min-height: 132px;
+    padding: 24px 20px;
   }
 
   .hero-actions,
