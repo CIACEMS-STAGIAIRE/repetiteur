@@ -369,6 +369,21 @@ onUnmounted(() => {
             </span>
             <strong>biogneachille@gmail.com</strong>
           </a>
+          <a
+            class="whatsapp-button"
+            href="https://wa.me/2250758034072?text=Bonjour%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20un%20r%C3%A9p%C3%A9titeur%20%C3%A0%20domicile."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path
+                  d="M20.52 3.48A11.87 11.87 0 0 0 12.08 0 11.98 11.98 0 0 0 1.9 18.33L.16 24l5.82-1.68A11.94 11.94 0 0 0 12.08 24 11.99 11.99 0 0 0 24 11.92a11.86 11.86 0 0 0-3.48-8.44ZM12.08 21.9a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.45 1 .99-3.35-.23-.38A9.88 9.88 0 1 1 12.08 21.9Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.08-.13-.27-.2-.57-.35Z"
+                />
+              </svg>
+            </span>
+            <strong>Écrire sur WhatsApp</strong>
+          </a>
         </div>
       </div>
 
@@ -1008,8 +1023,15 @@ onUnmounted(() => {
   opacity: 0.82;
 }
 
+.contact-section > div {
+  display: flex;
+  flex-direction: column;
+}
+
 .contact-direct {
-  display: grid;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   gap: 4px;
   max-width: 440px;
   margin-top: 34px;
@@ -1032,6 +1054,32 @@ onUnmounted(() => {
 .contact-direct a:hover {
   color: var(--color-cyan);
   transform: translateY(-2px);
+}
+
+.contact-direct .whatsapp-button {
+  justify-content: center;
+  min-height: 52px;
+  margin-top: auto;
+  padding: 0 18px;
+  color: var(--color-white);
+  border-radius: var(--radius);
+  background: #25d366;
+  box-shadow: 0 14px 28px rgba(37, 211, 102, 0.2);
+}
+
+.contact-direct .whatsapp-button:hover {
+  color: var(--color-white);
+  background: #1fb85a;
+}
+
+.whatsapp-button .contact-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-button .contact-icon svg {
+  fill: currentColor;
+  stroke: none;
 }
 
 .contact-icon {
@@ -1061,7 +1109,7 @@ onUnmounted(() => {
 .contact-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 50px) 1fr 48px auto;
+  grid-template-rows: repeat(3, 50px) 1fr 52px;
   gap: 14px;
   height: 100%;
   min-height: 430px;
@@ -1089,6 +1137,7 @@ onUnmounted(() => {
 
 .contact-form button {
   grid-column: 1 / -1;
+  height: 52px;
   border: 0;
   cursor: pointer;
 }
@@ -1317,6 +1366,10 @@ onUnmounted(() => {
 
   .contact-section {
     padding: 34px 22px;
+  }
+
+  .contact-direct .whatsapp-button {
+    margin-top: 18px;
   }
 }
 
