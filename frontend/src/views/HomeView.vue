@@ -191,9 +191,9 @@ onUnmounted(() => {
   <main class="home-page">
     <header class="site-header" :class="{ 'site-header--transparent': hasScrolled }">
       <div class="header-inner">
-        <a class="brand" href="#accueil" aria-label="Le Répétiteur - accueil">
+        <a class="brand" href="#accueil" aria-label="Répétiteur Plus - accueil">
           <span class="brand-surface">
-            <img :src="logoRepetiteur" alt="Le Répétiteur" />
+            <img :src="logoRepetiteur" alt="Répétiteur Plus" />
           </span>
         </a>
 
@@ -358,7 +358,7 @@ onUnmounted(() => {
                 />
               </svg>
             </span>
-            <strong>0758034072</strong>
+            <strong>+225 07 58 03 40 72</strong>
           </a>
           <a href="mailto:biogneachille@gmail.com">
             <span class="contact-icon" aria-hidden="true">
@@ -470,13 +470,13 @@ onUnmounted(() => {
     <footer class="site-footer">
       <div class="footer-main">
         <div class="footer-brand">
-          <img :src="logoRepetiteur" alt="Le Répétiteur" />
+          <img :src="logoRepetiteur" alt="Répétiteur Plus" />
           <p>Placement de répétiteurs à domicile pour un suivi scolaire fiable et personnalisé.</p>
         </div>
 
         <address class="footer-contact">
           <h2>Contact</h2>
-          <a href="tel:+2250758034072">0758034072</a>
+          <a href="tel:+2250758034072">+225 07 58 03 40 72</a>
           <a href="mailto:biogneachille@gmail.com">biogneachille@gmail.com</a>
           <span>Abidjan, Côte d'Ivoire</span>
         </address>
@@ -490,7 +490,7 @@ onUnmounted(() => {
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Répétiteur. Tous droits réservés.</p>
+        <p>© 2026 Répétiteur Plus. Tous droits réservés.</p>
         <p>
           Développé par
           <a href="https://ciacems.net" target="_blank" rel="noopener noreferrer">CIACEMS</a>
