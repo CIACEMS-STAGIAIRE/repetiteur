@@ -551,11 +551,6 @@ onUnmounted(() => {
   justify-content: center;
   width: clamp(172px, 18vw, 236px);
   height: 68px;
-  padding: 8px 16px;
-  border: 1px solid rgba(1, 195, 247, 0.22);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 14px 32px rgba(0, 42, 144, 0.18);
 }
 
 .brand img {
