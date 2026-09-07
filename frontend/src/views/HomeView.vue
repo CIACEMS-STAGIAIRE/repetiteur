@@ -114,7 +114,7 @@ const sendContactRequest = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        _subject: `Nouvelle demande de répétiteur - ${contactForm.value.name}`,
+        _subject: `Nouvelle demande de répétiteur.plus - ${contactForm.value.name}`,
         'Nom complet': contactForm.value.name,
         Téléphone: contactForm.value.phone,
         'Commune / quartier': contactForm.value.location,
