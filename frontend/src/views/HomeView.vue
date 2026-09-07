@@ -73,7 +73,8 @@ const contactForm = ref({
   message: '',
 })
 
-const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT
+const formspreeEndpoint =
+  import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/mrpgkvej'
 
 const updateHeader = () => {
   hasScrolled.value = window.scrollY > 24
