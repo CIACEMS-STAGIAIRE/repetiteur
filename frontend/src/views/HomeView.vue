@@ -7,6 +7,7 @@ import logoRepetiteur from '../assets/logo_repetiteur.png'
 const navItems = [
   { label: 'Accueil', id: 'accueil' },
   { label: 'Services', id: 'services' },
+  { label: 'À propos', id: 'a-propos' },
   { label: 'Méthode', id: 'methode' },
   { label: 'Répétiteurs', id: 'repetiteurs' },
   { label: 'Avis', id: 'avis' },
@@ -57,6 +58,19 @@ const testimonials = [
   },
 ]
 
+const subjectOptions = [
+  'Mathématiques',
+  'Français',
+  'Anglais',
+  'Physique-Chimie',
+  'SVT',
+  'Histoire-Géographie',
+  'Allemand',
+  'Espagnol',
+  'EDHC',
+  'Aide aux devoirs',
+]
+
 const displayedStats = ref(stats.map(() => 0))
 const hasScrolled = ref(false)
 const isMenuOpen = ref(false)
@@ -68,7 +82,7 @@ const contactForm = ref({
   phone: '',
   location: '',
   level: '',
-  subject: '',
+  subjects: [] as string[],
   availability: '',
   message: '',
 })
@@ -104,6 +118,12 @@ const sendContactRequest = async () => {
     return
   }
 
+  if (contactForm.value.subjects.length === 0) {
+    contactStatus.value = 'error'
+    contactMessage.value = 'Sélectionnez au moins une matière.'
+    return
+  }
+
   isSending.value = true
 
   try {
@@ -119,7 +139,7 @@ const sendContactRequest = async () => {
         Téléphone: contactForm.value.phone,
         'Commune / quartier': contactForm.value.location,
         'Niveau scolaire': contactForm.value.level,
-        'Matière principale': contactForm.value.subject,
+        'Matières principales': contactForm.value.subjects.join(', '),
         'Disponibilité souhaitée': contactForm.value.availability,
         'Besoin principal': contactForm.value.message,
       }),
@@ -144,7 +164,7 @@ const sendContactRequest = async () => {
       phone: '',
       location: '',
       level: '',
-      subject: '',
+      subjects: [],
       availability: '',
       message: '',
     }
@@ -291,6 +311,42 @@ onUnmounted(() => {
       </div>
     </section>
 
+    <section id="a-propos" class="section about-section">
+      <div class="about-intro">
+        <p class="eyebrow">Qui sommes-nous ?</p>
+        <h2>Une structure de proximité dédiée à la réussite scolaire.</h2>
+        <p>
+          Implantée à Abidjan, Cocody Faya, notre structure est spécialisée dans l'accompagnement
+          pédagogique et les cours particuliers à domicile. Du CP1 à la classe de Terminale, nous
+          accompagnons les élèves dans toutes les matières pour renforcer leurs acquis, surmonter
+          leurs difficultés et viser l'excellence académique.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-card">
+          <span>01</span>
+          <h3>Notre mission</h3>
+          <p>
+            Sélectionner avec la plus grande rigueur et offrir aux familles les meilleurs
+            répétiteurs. Nous veillons à mettre à votre disposition des enseignants qualifiés,
+            pédagogues et passionnés, capables de dispenser un encadrement sur mesure, adapté au
+            rythme et aux besoins spécifiques de chaque enfant.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <span>02</span>
+          <h3>Notre vision</h3>
+          <p>
+            Être la structure référente de proximité auprès des familles pour assurer un suivi
+            scolaire personnalisé et de haute qualité. Nous ambitionnons d'étendre notre impact et
+            de toucher l'ensemble des foyers sur toute l'étendue du territoire ivoirien.
+          </p>
+        </article>
+      </div>
+    </section>
+
     <section id="methode" class="section method-section">
       <div class="method-copy">
         <p class="eyebrow">Méthode</p>
@@ -424,23 +480,21 @@ onUnmounted(() => {
           <option>Lycée</option>
           <option>Préparation examen</option>
         </select>
-        <select
-          v-model="contactForm.subject"
-          name="subject"
-          aria-label="Matière principale"
-          required
-        >
-          <option value="" disabled>Matière principale</option>
-          <option>Mathématiques</option>
-          <option>Français</option>
-          <option>Anglais</option>
-          <option>Physique-Chimie</option>
-          <option>SVT</option>
-          <option>Aide aux devoirs</option>
-          <option>Plusieurs matières</option>
-        </select>
+        <fieldset class="subject-field" aria-label="Matières principales">
+          <span class="subject-title">Matières principales</span>
+          <label v-for="subject in subjectOptions" :key="subject">
+            <input
+              v-model="contactForm.subjects"
+              type="checkbox"
+              name="subjects"
+              :value="subject"
+            />
+            <span>{{ subject }}</span>
+          </label>
+        </fieldset>
         <select
           v-model="contactForm.availability"
+          class="availability-select"
           name="availability"
           aria-label="Disponibilité souhaitée"
           required
@@ -861,6 +915,77 @@ onUnmounted(() => {
   background: var(--color-red);
 }
 
+.about-section {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 42px;
+  align-items: stretch;
+  padding-top: 18px;
+}
+
+.about-intro {
+  padding: 44px;
+  color: var(--color-white);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(0, 42, 144, 0.96), rgba(0, 22, 83, 0.98)), var(--color-primary);
+}
+
+.about-intro .eyebrow,
+.about-intro h2,
+.about-intro p {
+  color: var(--color-white);
+}
+
+.about-intro p {
+  margin-top: 22px;
+  line-height: 1.75;
+  opacity: 0.86;
+}
+
+.about-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.about-card {
+  padding: 30px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-white);
+  box-shadow: 0 12px 30px rgba(14, 23, 48, 0.06);
+}
+
+.about-card span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 20px;
+  color: var(--color-primary-dark);
+  border-radius: 50%;
+  background: var(--color-yellow);
+  font-weight: 900;
+}
+
+.about-card:nth-child(2) span {
+  color: var(--color-white);
+  background: var(--color-red);
+}
+
+.about-card h3 {
+  margin: 0 0 14px;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+}
+
+.about-card p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
 .service-card h3,
 .timeline-item h3 {
   margin: 0 0 14px;
@@ -1105,10 +1230,10 @@ onUnmounted(() => {
 .contact-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 50px) 1fr 52px;
+  grid-template-rows: repeat(2, 50px) auto 50px 1fr 52px;
   gap: 14px;
   height: 100%;
-  min-height: 430px;
+  min-height: 570px;
 }
 
 .contact-form input,
@@ -1122,6 +1247,56 @@ onUnmounted(() => {
   border-radius: var(--radius);
   background: var(--color-white);
   outline: none;
+}
+
+.subject-field {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+  min-height: 172px;
+  margin: 0;
+  padding: 14px 18px 16px;
+  color: var(--color-ink);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius);
+  background: var(--color-white);
+}
+
+.subject-title {
+  grid-column: 1 / -1;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.subject-field label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.subject-field input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  accent-color: var(--color-primary);
+}
+
+.subject-field span {
+  overflow-wrap: anywhere;
+}
+
+.availability-select {
+  grid-column: 1 / -1;
 }
 
 .contact-form textarea {
@@ -1320,6 +1495,7 @@ onUnmounted(() => {
   }
 
   .stats-grid,
+  .about-section,
   .method-section,
   .profile-section,
   .testimonials-grid,
@@ -1437,6 +1613,15 @@ onUnmounted(() => {
   .timeline,
   .quality-list,
   .contact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .about-intro,
+  .about-card {
+    padding: 28px;
+  }
+
+  .subject-field {
     grid-template-columns: 1fr;
   }
 
